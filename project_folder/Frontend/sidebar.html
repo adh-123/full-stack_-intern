@@ -13,7 +13,7 @@ body{
 .sidebar{
     width:150px;
     height:100vh;
-    background:#2c3e50;
+    background:black;
     color:white;
     position:fixed;
     padding:20px;
@@ -27,7 +27,11 @@ body{
 }
 
 .sidebar a:hover{
-    background:#34495e;
+    background:blueviolet;
+}
+.sidebar a.active{
+    background:blueviolet;
+    
 }
 
 .header{
@@ -41,8 +45,12 @@ body{
 }
 
 .content{
+    display:block;
     margin-left:200px;
-    padding:10px;
+    padding:1px;
+}
+.hide{
+    display: none;
 }
 
 </style>
@@ -53,36 +61,46 @@ body{
 
 <div class="sidebar">
 <h2>Dashboard</h2>
-<a onclick="showHome()">Home</a>
-<a onclick="showUsers()">Users</a>
-<a onclick="showreport()">Reports</a>
-<a onclick="showSettings()">Settings</a>
+<a id="menu-home"onclick="onMenuClick('home')">Home</a>
+<a id="menu-user"onclick="onMenuClick('user')">Users</a>
+<a id="menu-reports"onclick="onMenuClick('reports')">Reports</a>
+<a id="menu-settings"onclick="onMenuClick('settings')">Settings</a>
 </div>
 
 <div class="header">
 <h2>My Dashboard</h2>
 </div>
 
-<div class="content" id="content">
+<div class="hide" id="home">
 <h3>Welcome</h3>
-<p>This is the main content area.</p>
-
+<p>This is the home content area.</p>
 </div>
+<div class="hide" id="user">
+<h3>Welcome</h3>
+<p>This is the users content area.</p>
+</div>
+<div class="hide" id="reports">
+<h3>Welcome</h3>
+<p>This is the report content area.</p>
+</div>
+<div class="hide" id="settings">
+<h3>Welcome</h3>
+<p>This is the settings content area.</p>
+</div>
+
 <script>
-function showHome(){
-document.getElementById("content").innerHTML="<h3>Home</h3><p>Welcome to Homepage</p>";
-}
-function showUsers(){
-document.getElementById("content").innerHTML="<h3>Users</h3><p>Welcome to users page</P>";
-} 
-function showreport(){
-document.getElementById("content").innerHTML="<h3>Reports</h3><p>Welcome to Reports page</P>";
-}
-function showSettings(){
-document.getElementById("content").innerHTML="<h3>Settings</h3><p>Welcome to settings Page</p>";
+function onMenuClick(menu){
+document.getElementById("home").className="hide"
+document.getElementById("user").className="hide"
+document.getElementById("reports").className="hide"
+document.getElementById("settings").className="hide"
+document.getElementById(menu).className="content"
+document.getElementById("menu-home").classList.remove("active")
+document.getElementById("menu-user").classList.remove("active")
+document.getElementById("menu-reports").classList.remove("active")
+document.getElementById("menu-settings").classList.remove("active")
+document.getElementById("menu-"+menu).classList.add("active")
 }
 </script>
-
-
 </body>
 </html>
