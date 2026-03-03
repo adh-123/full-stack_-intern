@@ -1,0 +1,88 @@
+
+<html>
+<head>
+<title>Dashboard</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+}
+
+.sidebar{
+    width:150px;
+    height:100vh;
+    background:#2c3e50;
+    color:white;
+    position:fixed;
+    padding:20px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:10px;
+    text-decoration:none;
+}
+
+.sidebar a:hover{
+    background:#34495e;
+}
+
+.header{
+    margin-left:190px;
+    height:65px;
+    background:#3498db;
+    color:white;
+    display:flex;
+    align-items:center;
+    padding-left:20px;
+}
+
+.content{
+    margin-left:200px;
+    padding:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>Dashboard</h2>
+<a onclick="showHome()">Home</a>
+<a onclick="showUsers()">Users</a>
+<a onclick="showreport()">Reports</a>
+<a onclick="showSettings()">Settings</a>
+</div>
+
+<div class="header">
+<h2>My Dashboard</h2>
+</div>
+
+<div class="content" id="content">
+<h3>Welcome</h3>
+<p>This is the main content area.</p>
+
+</div>
+<script>
+function showHome(){
+document.getElementById("content").innerHTML="<h3>Home</h3><p>Welcome to Homepage</p>";
+}
+function showUsers(){
+document.getElementById("content").innerHTML="<h3>Users</h3><p>Welcome to users page</P>";
+} 
+function showreport(){
+document.getElementById("content").innerHTML="<h3>Reports</h3><p>Welcome to Reports page</P>";
+}
+function showSettings(){
+document.getElementById("content").innerHTML="<h3>Settings</h3><p>Welcome to settings Page</p>";
+}
+</script>
+
+
+</body>
+</html>
