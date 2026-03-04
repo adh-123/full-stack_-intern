@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Login Page</title>
+        <link rel="Stylesheet" href="style.css">
+        </head>
+        <body>
+            
+            <form  onsubmit="onSubmit(event)" class="login-form">
+                <h2>Login</h2>
+                <label for="email">email</label>
+                <input type="email" name="email" placeholder="Enter your mail"><br><br>
+                <label for="password">password</label>
+                <input type="password"  name="password" placeholder="Enter your password"><br><br>
+                <button type="submit">login</button>      </form>
+                <script>
+                    function onSubmit(event){
+                        event.preventDefault()
+                        const data = new FormData(event.target)
+                        console.log(data.get("email"));
+                        console.log(data.get("password"));
+                        // let email=document.getElementById("email").value;
+                        // let password=document.getElementById("password").value;
+
+                        
+                    };
+                </script>
+        </body>
+    </head>
+</html>
