@@ -1,0 +1,120 @@
+<html>
+<head>
+    <title>Create/AddTask</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 id="formTitle">Add Task</h2>
+
+    <form id="taskForm">
+
+        <label>Task Name</label>
+        <input type="text" id="taskName"><br><br>
+        <span id="nameError" class="error"></span>
+
+        <label>Description</label>
+        <textarea id="taskDesc"></textarea><br><br>
+        <span id="descError" class="Error"></span>
+
+        <label>Due Date</label>
+        <input type="date" id="taskDate"><br><br>
+
+        <button type="submit" class="save">Save Task</button>
+        <button type="button" class="cancel">Cancel</button>
+
+    </form>
+
+    <ul id="taskList"></ul>
+
+</div>
+
+<script>
+
+let editItem = null;   //  store editing task
+
+document.getElementById("taskForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let name = document.getElementById("taskName").value;
+     document.getElementById("nameError").innerHTML="";
+     if(name.trim().length<3){
+        document.getElementById("nameError").innerHTML="Provide atleast 3 charcter details";
+        
+    
+     }
+    
+    let desc = document.getElementById("taskDesc").value;
+    document.getElementById("descError").innerHTML="";
+    if(desc.trim().length<5){
+        document.getElementById("descError").innerHTML="Provide atleast 5 characters";
+        return;
+    }
+    let date = document.getElementById("taskDate").value;
+    
+
+    if(editItem){
+
+        editItem.querySelector(".title").innerText = name;
+        editItem.querySelector(".desc").innerText = desc;
+        editItem.querySelector(".date").innerText = date;
+
+        editItem = null;
+
+    }
+    else{
+
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+            <span class="title">${name}</span> -
+            <span class="desc">${desc}</span> -
+            <span class="date">${date}</span>
+
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>`;
+
+        document.getElementById("taskList").appendChild(li);
+    }
+
+    document.getElementById("taskForm").reset();
+
+});
+
+
+document.querySelector(".cancel").addEventListener("click", function(){
+    document.getElementById("taskForm").reset();
+});
+
+document.getElementById("taskList").addEventListener("click", function(e){
+
+    if(e.target.classList.contains("deleteBtn")){
+        e.target.parentElement.remove();
+    }
+
+    
+    if(e.target.classList.contains("editBtn")){
+
+        editItem = e.target.parentElement;
+
+        document.getElementById("taskName").value =
+            editItem.querySelector(".title").innerText;
+
+        document.getElementById("taskDesc").value =
+            editItem.querySelector(".desc").innerText;
+
+        document.getElementById("taskDate").value =
+            editItem.querySelector(".date").innerText;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

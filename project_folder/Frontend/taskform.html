@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Task</title>
+    <link rel="stylesheet" href="style2.css"
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 id="formTitle">Add Task</h2>
+
+    <form onsubmit="onsubmit(event)" id="taskForm">
+
+        <input type="hidden" id="taskId">
+
+        <label>Task Name</label>
+        <input type="text" id="taskName" placeholder="Enter task name">
+
+        <label>Status</label>
+        <select id="status">
+            <option value="">Select Status</option>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+        </select>
+
+        <div class="buttons">
+            <button type="submit">Save Task</button>
+            <button type="button" onclick="resetForm()">Cancel</button>
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+
+let tasks = [];
+
+function onsubmit(event){
+    event.preventDefault();
+
+    let name = document.getElementById("taskName").value;
+    let status = document.getElementById("status").value;
+
+    let task = {
+        name: name,
+        status: status
+    };
+
+    tasks.push(task);
+
+    console.log(tasks);
+
+    resetForm();
+}
+
+function resetForm(){
+    document.getElementById("taskForm").reset();
+}
+
+</script>
+
+</body>
+</html>

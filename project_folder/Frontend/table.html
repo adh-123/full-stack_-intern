@@ -3,22 +3,16 @@
 <title>User Table</title>
 <link rel="stylesheet" href="style1.css">
 </head>
-
 <body>
-
 <h2>User Table</h2>
-
 <button onclick="showForm()">Add User</button>
-
 <div id="user-form" style="display:none;">
 <input type="text" id="name" placeholder="Enter Name">
 <input type="text" id="email" placeholder="Enter Email">
 <button onclick="addUser()">Save User</button>
 </div>
 <br><br>
-
 <table border="1">
-
 <thead>
 <tr>
 <th>ID</th>
@@ -27,29 +21,20 @@
 <th>Actions</th>
 </tr>
 </thead>
-
 <tbody id="user-records"></tbody>
-
 </table>
-
 <script>
     let editIndex=-1;
-
 const users=[
 {id:1,name:"Ram",email:"ram@gmail.com"},
 {id:2,name:"Krishna",email:"krishna@gmail.com"}
 ]
-
 const usersTableBody=document.getElementById("user-records")
 
 function renderUsers(){
-
 usersTableBody.innerHTML=""
-
 users.forEach((user,index)=>{
-
 let tr=document.createElement("tr")
-
 tr.innerHTML=`
 <td>${user.id}</td>
 <td>${user.name}</td>
@@ -59,73 +44,44 @@ tr.innerHTML=`
 <button onclick="deleteUser(${index})">Delete</button>
 </td>
 `
-
 usersTableBody.appendChild(tr)
-
 })
-
 }
-
 renderUsers()
 function showForm(){
     document.getElementById("user-form").style.display="block";
 }
 function addUser(){
-
 let name = document.getElementById("name").value.trim();
 let email = document.getElementById("email").value.trim();
-
-// validation
 if(name === "" || email === ""){
 alert("Please enter Name and Email");
 return;
 }
-
 if(editIndex === -1){
-
 let newUser={
 id:users.length+1,
 name:name,
 email:email
 }
-
 users.push(newUser)
-
 }else{
-
 users[editIndex].name = name
 users[editIndex].email = email
-
 editIndex = -1
 }
-
 renderUsers()
-
 document.getElementById("user-form").style.display="none"
-
 document.getElementById("name").value=""
 document.getElementById("email").value=""
-
 }
-
-
-
 function editUser(index){
-
 document.getElementById("name").value = users[index].name;
 document.getElementById("email").value = users[index].email;
-
 document.getElementById("user-form").style.display = "block";
-
 editIndex = index;
-
 }
 renderUsers()
-
-
-
-
 </script>
-
 </body>
 </html>
